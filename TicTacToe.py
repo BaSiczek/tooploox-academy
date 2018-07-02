@@ -15,8 +15,8 @@ def print_board(board):
 
 def get_player_input():
     while True:
+        answer = int(input("{} your move. Where you want to put '{}'? ".format(players_name[marker], marker)))
         try:
-            answer = int(input("{} your move. Where you want to put '{}'? ".format(players_name[marker], marker)))
             if answer in range(1,10) and board[answer-1] == '_':
                 return answer
             else:
@@ -24,7 +24,7 @@ def get_player_input():
         except ValueError:
             print("Answer should be a number in range 1-9.")
 
-def place_marker(board, move, marker):  
+def place_marker(board, move, marker):
     board[move-1] = marker
     return board
 
@@ -34,13 +34,13 @@ def decide_on_marker():
     else:
         return 'O'
 
-def check_win(index, mark, board):  
+def check_win(index, mark, board):
     # array = [[],[],[]]
     array = [board[:3], board[3:6], board[6:]]
-    
-    row = (index-1) // 3 
+
+    row = (index-1) // 3
     column = (index-1) % 3
-    
+
     #check row
     if array[row][0] == array[row][1] == array[row][2] == mark:
         return True
@@ -81,7 +81,7 @@ while still_playing:
         print("TIC TAC TOE index:")
         print_index_table()
         print_board(board)
-    
+
         if x>=4:
             player_won = check_win(move, marker, board)
             if player_won:
